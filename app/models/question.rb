@@ -17,16 +17,16 @@ class Question < ActiveRecord::Base
         responses ON answer_choices.id = responses.answer_choice_id
     SQL
 
-    answer_choices = AnswerChoice
+    answer_choices = self
+      .answer_choices
       .select(select_sql)
-      .joins(:question)
       .joins(responses_joins_sql)
-      .where("questions.poll_id = ?", self.id)
       .group("answer_choices.id")
 
     {}.tap do |results|
       answer_choices.each do |answer_choice|
-        results[answer_choice.text] = Integer(answer_choice.response_count)
+        results[answer_choice.text] =
+          Integer(answer_choice.response_count)
       end
     end
   end
