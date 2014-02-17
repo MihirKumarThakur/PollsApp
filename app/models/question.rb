@@ -7,6 +7,10 @@ class Question < ActiveRecord::Base
   belongs_to :poll
 
   def results
+    # Note that this somewhat tortured solution serves two goals:
+    # 1. Avoid N+1 query
+    # 2. Avoid fetching all the `Response`s (there could be many!)
+
     select_sql = <<-SQL
       answer_choices.*,
       COUNT(responses.id) AS response_count
@@ -29,5 +33,15 @@ class Question < ActiveRecord::Base
           Integer(answer_choice.response_count)
       end
     end
+
+    # Here's a simpler solution that fails goal #2:
+    # answer_choices = self
+    #   .answer_choices
+    #   .includes(:responses)
+    # {}.tap do |results|
+    #   answer_choices.each do |ac|
+    #     results[ac.text] = ac.responses.length
+    #   end
+    # end
   end
 end
