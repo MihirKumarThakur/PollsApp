@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   validates :user_name, :presence => true
 
   has_many(
@@ -10,3 +9,4 @@ class User < ActiveRecord::Base
 
   has_many :responses, :foreign_key => :respondent_id
 end
+

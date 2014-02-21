@@ -1,5 +1,4 @@
 class Response < ActiveRecord::Base
-
   validates :answer_choice, :respondent_id, :presence => true
 
   belongs_to :answer_choice
@@ -64,3 +63,4 @@ class Response < ActiveRecord::Base
     )
   end
 end
+
