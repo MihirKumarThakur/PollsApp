@@ -9,7 +9,7 @@ class Response < ActiveRecord::Base
 
   validate :respondent_has_not_already_answered_question
   validate :respondent_is_not_poll_author
-  
+
   private
   def respondent_is_not_poll_author
     poll_author_id = User
@@ -44,7 +44,7 @@ class Response < ActiveRecord::Base
       JOIN
         answer_choices ON responses.answer_choice_id = answer_choices.id
       WHERE
-        (responses.respondent_id = :respondent_id AND 
+        (responses.respondent_id = :respondent_id AND
           answer_choices.question_id = (
             SELECT
               answer_choices.question_id
