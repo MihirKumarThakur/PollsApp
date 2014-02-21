@@ -1,5 +1,4 @@
 class Response < ActiveRecord::Base
-  attr_accessible :answer_choice_id, :respondent_id
 
   validates :answer_choice, :respondent_id, :presence => true
 
