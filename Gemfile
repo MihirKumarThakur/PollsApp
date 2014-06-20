@@ -38,10 +38,8 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-# Use debugger
 # gem 'debugger', group: [:development, :test]
 group :development do
-  gem 'debugger'
   gem 'pry-rails'
 end
 gem 'pg'
