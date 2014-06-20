@@ -4,6 +4,8 @@ class Question < ActiveRecord::Base
   has_many :answer_choices
   belongs_to :poll
 
+  has_many :responses, through: :answer_choices
+
   def results
     # Note that this somewhat tortured solution serves two goals:
     # 1. Avoid N+1 query
