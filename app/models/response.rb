@@ -1,5 +1,5 @@
 class Response < ActiveRecord::Base
-  validates :answer_choice, :respondent_id, :presence => true
+  validates :answer_choice, :respondent_id, presence: true
 
   belongs_to :answer_choice
   # will infer `:foreign_key => :respondent_id` from association name.
@@ -63,4 +63,3 @@ class Response < ActiveRecord::Base
     )
   end
 end
-

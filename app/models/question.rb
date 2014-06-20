@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  validates :poll_id, :text, :presence => true
+  validates :poll_id, :text, presence: true
 
   has_many :answer_choices
   belongs_to :poll
@@ -43,4 +43,3 @@ class Question < ActiveRecord::Base
     # end
   end
 end
-
