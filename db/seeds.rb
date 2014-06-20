@@ -21,4 +21,11 @@ ActiveRecord::Base.transaction do
   ac4 = AnswerChoice.create!(text: "String", question_id: q2.id)
   ac5 = AnswerChoice.create!(text: "Ball", question_id: q2.id)
   ac6 = AnswerChoice.create!(text: "Bird", question_id: q2.id)
+
+  r1 = Response.create!(
+    respondent_id: u2.id, answer_choice_id: ac3.id
+  )
+  r2 = Response.create!(
+    respondent_id: u2.id, answer_choice_id: ac4.id
+  )
 end
