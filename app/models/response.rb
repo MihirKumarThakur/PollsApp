@@ -10,7 +10,7 @@ class Response < ActiveRecord::Base
   validate :respondent_has_not_already_answered_question
   validate :respondent_is_not_poll_author
 
-  def sibbling_responses
+  def sibling_responses
     # 2-query way
     self.question.responses
       .where("responses.respondent_id = ?", self.respondent_id)
@@ -38,7 +38,7 @@ class Response < ActiveRecord::Base
   end
 
   def respondent_has_not_already_answered_question
-    return if sibbling_responses.empty?
+    return if sibling_responses.empty?
     errors[:respondent_id] << "cannot vote twice for question"
   end
 end
