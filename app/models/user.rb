@@ -28,7 +28,7 @@ COUNT(DISTINCT questions.id) AS num_questions,
 COUNT(responses.id) AS num_responses
 SQL
 
-    # the interpolation in here is lame (I'm lazy tonight), but it is
+    # the interpolation in here is not ideal (I'm lazy tonight), but it is
     # actually safe from injection attack because the end-user doesn't
     # get to pick DB ids.
     joins_sql = <<-SQL
