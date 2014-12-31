@@ -13,7 +13,6 @@ class Response < ActiveRecord::Base
   def sibling_responses
     # 2-query way
     self.question.responses
-      .where("responses.respondent_id = ?", self.respondent_id)
       .where(
         "(:id IS NULL) OR (responses.id != :id)",
         id: self.id
@@ -63,7 +62,8 @@ class Response < ActiveRecord::Base
   end
 
   def respondent_has_not_already_answered_question
-    return if sibling_responses.empty?
+    own_responses = sibling_responses.where(respondent_id: self.respondent_id)
+    return if own_responses.empty?
     errors[:respondent_id] << "cannot vote twice for question"
   end
 end
